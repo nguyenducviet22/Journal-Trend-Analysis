@@ -1,0 +1,78 @@
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
+import '../constants/api_constants.dart';
+import '../error/exceptions.dart';
+
+class ApiClient {
+  final Dio _dio;
+
+  ApiClient({Dio? dio}) : _dio = dio ?? Dio() {
+    _dio.options = BaseOptions(
+      baseUrl: ApiConstants.baseUrl,
+      connectTimeout: const Duration(seconds: 40),
+      receiveTimeout: const Duration(seconds: 40),
+      headers: {
+        'Accept': 'application/json',
+        // Participating in OpenAlex Polite Pool
+        'User-Agent': ApiConstants.userAgent,
+      },
+    );
+
+    // Add Logging Interceptor
+    _dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          // Log outgoing request details safely in debug mode
+          debugPrint('Dio Request: [${options.method}] ${options.baseUrl}${options.path}');
+          debugPrint('Dio Query Params: ${options.queryParameters}');
+          return handler.next(options);
+        },
+        onResponse: (response, handler) {
+          // Log successful response details safely in debug mode
+          debugPrint('Dio Response: [${response.statusCode}] ${response.requestOptions.path}');
+          return handler.next(response);
+        },
+        onError: (DioException e, handler) {
+          // Log request failure details safely in debug mode
+          debugPrint('Dio Error: [${e.response?.statusCode}] ${e.message}');
+          return handler.next(e);
+        },
+      ),
+    );
+  }
+
+  Future<dynamic> get(
+    String path, {
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+  }) async {
+    try {
+      final response = await _dio.get(
+        path,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+      );
+      return response.data;
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.connectionTimeout ||
+          e.type == DioExceptionType.receiveTimeout ||
+          e.type == DioExceptionType.sendTimeout) {
+        throw NetworkException('Connection timed out');
+      }
+      final status = e.response?.statusCode;
+      if (status == 429) {
+        throw ServerException('Rate limited by OpenAlex. Please wait.');
+      }
+      if (status == 404) {
+        throw ServerException('Resource not found on OpenAlex.');
+      }
+      throw ServerException(
+        e.response?.data?['message']?.toString() ?? e.message ?? 'Unknown connection error',
+      );
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+}

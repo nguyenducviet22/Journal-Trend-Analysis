@@ -1,0 +1,81 @@
+{
+  "setup": {
+    "title": "Chào mừng Nhà nghiên cứu",
+    "subtitle": "Thiết lập hồ sơ để bắt đầu khám phá xu hướng học thuật",
+    "name_label": "Họ và Tên",
+    "name_hint": "Nhập tên của bạn hoặc tạo ngẫu nhiên",
+    "interest_label": "Lĩnh vực quan tâm",
+    "interest_hint": "Tìm kiếm và chọn một chủ đề chính",
+    "button_generate": "Tạo ngẫu nhiên tên Nhà nghiên cứu",
+    "button_save": "Lưu & Tiếp tục",
+    "name_error": "Vui lòng nhập hoặc tạo ngẫu nhiên tên",
+    "interest_error": "Vui lòng chọn một chủ đề nghiên cứu"
+  },
+  "dashboard": {
+    "welcome": "Chào mừng trở lại, {name}",
+    "sub_header": "Thông tin xu hướng mới nhất về {interest}",
+    "last_updated": "Cập nhật lần cuối: {time}",
+    "never_updated": "Chưa đồng bộ",
+    "syncing": "Đang đồng bộ dữ liệu...",
+    "btn_refresh": "Làm mới thủ công",
+    "recent_searches": "Tìm kiếm gần đây",
+    "recent_interest_papers": "Bài báo quan tâm gần đây ({interest})",
+    "search_hint": "Tìm kiếm chủ đề nghiên cứu...",
+    "metrics": {
+      "total_publications": "Tổng số bài báo",
+      "avg_citations": "Tổng số trích dẫn",
+      "active_year": "Năm hoạt động nhất",
+      "top_journal": "Tạp chí hàng đầu",
+      "top_author": "Tác giả nổi bật",
+      "most_influential": "Bài báo ảnh hưởng nhất"
+    }
+  },
+  "journal": {
+    "title": "Ấn phẩm",
+    "search_placeholder": "Tìm kiếm bài báo...",
+    "details_title": "Chi tiết bài báo",
+    "abstract": "Tóm tắt",
+    "abstract_not_available": "Không có tóm tắt cho bài viết này.",
+    "authors": "Tác giả",
+    "journal": "Tạp chí",
+    "published_in": "Xuất bản năm {year}",
+    "citations": "Trích dẫn",
+    "open_access": "Truy cập mở",
+    "closed_access": "Truy cập trả phí",
+    "view_doi": "Mở liên kết gốc (DOI)"
+  },
+  "keywords": {
+    "title": "Xu hướng Từ khóa & Tác giả",
+    "top_keywords": "Từ khóa hàng đầu",
+    "emerging_keywords": "Từ khóa mới nổi (Tỷ lệ tăng trưởng)",
+    "topic_evolution": "Sự phát triển chủ đề",
+    "author_productivity": "Năng suất & Ảnh hưởng tác giả",
+    "author_collaboration": "Mạng lưới hợp tác tác giả",
+    "journal_ranking": "Xếp hạng tạp chí",
+    "emerging_journals": "Tạp chí mới nổi",
+    "top_journals": "Tạp chí hàng đầu",
+    "growth": "Tăng trưởng"
+  },
+  "profile": {
+    "title": "Hồ sơ cá nhân",
+    "settings": "Cài đặt",
+    "language": "Ngôn ngữ ứng dụng",
+    "theme": "Giao diện",
+    "theme_light": "Chế độ sáng",
+    "theme_dark": "Chế độ tối",
+    "theme_system": "Mặc định hệ thống",
+    "clear_cache": "Xóa bộ nhớ đệm",
+    "clear_cache_desc": "Thao tác này sẽ xóa toàn bộ dữ liệu phân tích và cài đặt đã lưu.",
+    "clear_cache_confirm": "Xác nhận xóa",
+    "clear_cache_cancel": "Hủy",
+    "about": "Giới thiệu ứng dụng",
+    "about_desc": "Ứng dụng phân tích xu hướng học thuật sử dụng dữ liệu từ OpenAlex API.",
+    "version": "Phiên bản 1.0.0"
+  },
+  "error": {
+    "server": "Không thể kết nối đến máy chủ OpenAlex.",
+    "cache": "Không thể truy xuất dữ liệu bộ nhớ đệm.",
+    "network": "Không có kết nối mạng và không có dữ liệu lưu trữ ngoại tuyến.",
+    "unknown": "Đã xảy ra lỗi không xác định. Vui lòng thử lại sau."
+  }
+}

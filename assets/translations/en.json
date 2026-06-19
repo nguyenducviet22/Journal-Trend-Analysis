@@ -1,0 +1,81 @@
+{
+  "setup": {
+    "title": "Welcome Researcher",
+    "subtitle": "Setup your profile to begin exploring academic trends",
+    "name_label": "Full Name",
+    "name_hint": "Enter your name or generate one",
+    "interest_label": "Research Interest",
+    "interest_hint": "Search and select a primary topic",
+    "button_generate": "Generate Random Researcher Name",
+    "button_save": "Save & Continue",
+    "name_error": "Please enter or generate a name",
+    "interest_error": "Please select a research interest"
+  },
+  "dashboard": {
+    "welcome": "Welcome back, {name}",
+    "sub_header": "Latest trend insights for {interest}",
+    "last_updated": "Last updated: {time}",
+    "never_updated": "Never synced",
+    "syncing": "Syncing data...",
+    "btn_refresh": "Manual Refresh",
+    "recent_searches": "Recent Searches",
+    "recent_interest_papers": "Recent Interest Papers ({interest})",
+    "search_hint": "Search research topics...",
+    "metrics": {
+      "total_publications": "Total Publications",
+      "avg_citations": "Total Citations",
+      "active_year": "Most Active Year",
+      "top_journal": "Top Journal",
+      "top_author": "Top Author",
+      "most_influential": "Most Influential Paper"
+    }
+  },
+  "journal": {
+    "title": "Publications",
+    "search_placeholder": "Search publications...",
+    "details_title": "Publication Details",
+    "abstract": "Abstract",
+    "abstract_not_available": "Abstract not available for this publication.",
+    "authors": "Authors",
+    "journal": "Journal",
+    "published_in": "Published in {year}",
+    "citations": "Citations",
+    "open_access": "Open Access",
+    "closed_access": "Subscription Access",
+    "view_doi": "Open Original Link (DOI)"
+  },
+  "keywords": {
+    "title": "Keyword & Author Trends",
+    "top_keywords": "Top Keywords",
+    "emerging_keywords": "Emerging Keywords (Growth Rate)",
+    "topic_evolution": "Topic Evolution",
+    "author_productivity": "Author Productivity vs Impact",
+    "author_collaboration": "Author Collaboration Network",
+    "journal_ranking": "Journal Ranking",
+    "emerging_journals": "Emerging Journals",
+    "top_journals": "Top Journals",
+    "growth": "Growth"
+  },
+  "profile": {
+    "title": "User Profile",
+    "settings": "Settings",
+    "language": "App Language",
+    "theme": "Theme Mode",
+    "theme_light": "Light Mode",
+    "theme_dark": "Dark Mode",
+    "theme_system": "System Default",
+    "clear_cache": "Clear Offline Cache",
+    "clear_cache_desc": "This will remove all cached analytical data and settings.",
+    "clear_cache_confirm": "Confirm Clear",
+    "clear_cache_cancel": "Cancel",
+    "about": "About Journal Trend Analysis",
+    "about_desc": "A premium academic analytics utility consuming the OpenAlex API.",
+    "version": "Version 1.0.0"
+  },
+  "error": {
+    "server": "Failed to connect to the OpenAlex repository.",
+    "cache": "Failed to read cached data locally.",
+    "network": "No active internet connection and no cached data available.",
+    "unknown": "An unexpected error occurred. Please try again."
+  }
+}
