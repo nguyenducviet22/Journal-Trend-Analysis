@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import '../constants/api_constants.dart';
 import '../error/exceptions.dart';
+import '../utils/app_logger.dart';
 
 class ApiClient {
   final Dio _dio;
@@ -23,18 +23,18 @@ class ApiClient {
       InterceptorsWrapper(
         onRequest: (options, handler) {
           // Log outgoing request details safely in debug mode
-          debugPrint('Dio Request: [${options.method}] ${options.baseUrl}${options.path}');
-          debugPrint('Dio Query Params: ${options.queryParameters}');
+          AppLogger.d('Dio Request: [${options.method}] ${options.baseUrl}${options.path}');
+          AppLogger.d('Dio Query Params: ${options.queryParameters}');
           return handler.next(options);
         },
         onResponse: (response, handler) {
           // Log successful response details safely in debug mode
-          debugPrint('Dio Response: [${response.statusCode}] ${response.requestOptions.path}');
+          AppLogger.d('Dio Response: [${response.statusCode}] ${response.requestOptions.path}');
           return handler.next(response);
         },
         onError: (DioException e, handler) {
           // Log request failure details safely in debug mode
-          debugPrint('Dio Error: [${e.response?.statusCode}] ${e.message}');
+          AppLogger.e('Dio Error: [${e.response?.statusCode}] ${e.message}');
           return handler.next(e);
         },
       ),

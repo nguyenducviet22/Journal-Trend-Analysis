@@ -19,7 +19,7 @@ class AppTheme {
       height: height,
     );
     try {
-      final binding = WidgetsBinding.instance;
+      if (WidgetsBinding.instance == null) return base;
       return GoogleFonts.outfit(
         fontSize: fontSize,
         fontWeight: fontWeight,
@@ -45,7 +45,7 @@ class AppTheme {
       height: height,
     );
     try {
-      final binding = WidgetsBinding.instance;
+      if (WidgetsBinding.instance == null) return base;
       return GoogleFonts.inter(
         fontSize: fontSize,
         fontWeight: fontWeight,
@@ -63,12 +63,10 @@ class AppTheme {
       brightness: Brightness.dark,
       scaffoldBackgroundColor: AppColors.background,
       colorScheme: const ColorScheme.dark(
-        background: AppColors.background,
         surface: AppColors.surface,
         primary: AppColors.primary,
         secondary: AppColors.secondary,
         error: AppColors.highlight,
-        onBackground: AppColors.textMain,
         onSurface: AppColors.textMain,
         onPrimary: Colors.white,
       ),
@@ -166,12 +164,10 @@ class AppTheme {
       brightness: Brightness.light,
       scaffoldBackgroundColor: AppColors.backgroundLight,
       colorScheme: const ColorScheme.light(
-        background: AppColors.backgroundLight,
         surface: AppColors.surfaceLight,
         primary: AppColors.primaryLight,
         secondary: AppColors.secondaryLight,
         error: AppColors.highlightLight,
-        onBackground: AppColors.textMainLight,
         onSurface: AppColors.textMainLight,
         onPrimary: Colors.white,
       ),

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "561393583256",
+    "project_id": "journal-trend-analysis",
+    "storage_bucket": "journal-trend-analysis.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561393583256:android:cdec6d5a2781846d77bced",
+        "android_client_info": {
+          "package_name": "com.fptu.journaltrend.journal_trend_analysis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "561393583256-8q6vfcv0a6frg29lol1m2g5s3cuj1287.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fptu.journaltrend.journal_trend_analysis",
+            "certificate_hash": "95ac3882408af56530ccf7d34825f688178a7f7f"
+          }
+        },
+        {
+          "client_id": "561393583256-i5ho2ttu2s3lars2c7idunmd3jo2c1qc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbw5YIFU27YFitQ_kXg673RJZH_XC9HbU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "561393583256-i5ho2ttu2s3lars2c7idunmd3jo2c1qc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

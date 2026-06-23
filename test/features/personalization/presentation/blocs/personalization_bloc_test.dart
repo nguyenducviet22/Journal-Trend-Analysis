@@ -25,6 +25,8 @@ void main() {
     registerFallbackValue(const NoParams());
     registerFallbackValue(const UserPreferences(
       fullName: '',
+      email: '',
+      photoUrl: '',
       interestConceptId: '',
       interestConceptName: '',
     ));
@@ -53,6 +55,8 @@ void main() {
 
     const testPrefs = UserPreferences(
       fullName: 'Quantum Researcher',
+      email: '',
+      photoUrl: '',
       interestConceptId: 'C12345',
       interestConceptName: 'Quantum Computing',
     );

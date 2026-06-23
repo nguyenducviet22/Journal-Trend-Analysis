@@ -3,35 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../injection_container.dart';
-import '../../../journal/domain/entities/paper.dart';
 import '../blocs/dashboard_bloc.dart';
 import '../blocs/dashboard_event.dart';
 import '../blocs/dashboard_state.dart';
 import '../blocs/search_cubit.dart';
-
-class Concept {
-  final String id;
-  final String name;
-  const Concept(this.id, this.name);
-}
-
-const List<Concept> _popularConcepts = [
-  Concept('C41008148', 'Computer Science'),
-  Concept('C154945302', 'Artificial Intelligence'),
-  Concept('C119857082', 'Machine Learning'),
-  Concept('C2522767166', 'Data Science'),
-  Concept('C121332964', 'Physics'),
-  Concept('C33923547', 'Mathematics'),
-  Concept('C86803240', 'Biology'),
-  Concept('C71924100', 'Medicine'),
-  Concept('C185592680', 'Chemistry'),
-  Concept('C127413603', 'Engineering'),
-  Concept('C162324750', 'Economics'),
-  Concept('C15744967', 'Psychology'),
-  Concept('C144024400', 'Sociology'),
-  Concept('C138885662', 'Philosophy'),
-  Concept('C192562407', 'Materials Science'),
-];
+import '../../../../core/firebase/firebase_analytics_service.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -415,6 +391,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                                     onTap: () {
                                       _searchController.clear();
                                       _searchFocusNode.unfocus();
+                                      getIt<IFirebaseAnalyticsService>().logSearchTopic(item['name']!);
                                       context.read<DashboardBloc>().add(
                                             SelectConceptEvent(
                                               conceptId: item['id']!,
@@ -471,6 +448,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                                           title: Text(query),
                                           onTap: () {
                                             _searchController.text = query;
+                                            getIt<IFirebaseAnalyticsService>().logSearchTopic(query);
                                             context.read<SearchCubit>().search(query);
                                           },
                                         );
@@ -554,48 +532,4 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
         ),
       ),
     );
-  }
-
-  Widget _buildLongMetricCard(
-    BuildContext context, {
-    required String title,
-    required String value,
-    required IconData icon,
-    required Color color,
-  }) {
-    final theme = Theme.of(context);
-
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.0),
-        side: BorderSide(color: theme.dividerColor.withOpacity(0.1)),
-      ),
-      child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
-        leading: Container(
-          padding: const EdgeInsets.all(8.0),
-          decoration: BoxDecoration(
-            color: color.withOpacity(0.15),
-            shape: BoxShape.circle,
-          ),
-          child: Icon(icon, color: color, size: 24.0),
-        ),
-        title: Text(
-          value,
-          style: theme.textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
-        subtitle: Text(
-          title,
-          style: theme.textTheme.bodySmall?.copyWith(
-            color: theme.colorScheme.onBackground.withOpacity(0.6),
-          ),
-        ),
-      ),
-    );
-  }
-}
+  }}

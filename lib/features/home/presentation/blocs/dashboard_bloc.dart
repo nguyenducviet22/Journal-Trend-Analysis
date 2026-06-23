@@ -1,7 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/usecases/usecase.dart';
+import '../../../../core/utils/app_logger.dart';
 import '../../../personalization/domain/entities/user_preferences.dart';
 import '../../../personalization/domain/usecases/get_user_preferences_usecase.dart';
 import '../../../personalization/domain/usecases/save_user_preferences_usecase.dart';
@@ -157,7 +157,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
         isSyncing: false,
       ));
     } catch (e, stack) {
-      debugPrint('DashboardBloc Load Error: $e\n$stack');
+      AppLogger.e('DashboardBloc Load Error', e, stack);
       emit(DashboardFailure('Failed to load dashboard: $e'));
     }
   }
@@ -185,7 +185,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
         },
       );
     } catch (e, stack) {
-      debugPrint('DashboardBloc Sync Error: $e\n$stack');
+      AppLogger.e('DashboardBloc Sync Error', e, stack);
       emit(DashboardFailure('Sync failed: $e'));
       add(LoadDashboard());
     }
@@ -203,6 +203,8 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
       if (prefs != null) {
         final updatedPrefs = UserPreferences(
           fullName: prefs!.fullName,
+          email: prefs!.email,
+          photoUrl: prefs!.photoUrl,
           interestConceptId: event.conceptId,
           interestConceptName: event.conceptName,
         );
@@ -218,7 +220,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
         );
       }
     } catch (e, stack) {
-      debugPrint('DashboardBloc SelectConcept Error: $e\n$stack');
+      AppLogger.e('DashboardBloc SelectConcept Error', e, stack);
       emit(DashboardFailure('Failed to select concept: $e'));
     }
   }

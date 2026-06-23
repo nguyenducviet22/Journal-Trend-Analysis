@@ -19,6 +19,8 @@ class PersonalizationLocalDataSourceImpl implements PersonalizationLocalDataSour
   @override
   Future<UserPreferencesModel> getUserPreferences() async {
     final name = _sharedPreferences.getString(PrefsKeys.fullName);
+    final email = _sharedPreferences.getString(PrefsKeys.email) ?? '';
+    final photoUrl = _sharedPreferences.getString(PrefsKeys.photoUrl) ?? '';
     var conceptId = _sharedPreferences.getString(PrefsKeys.interestConceptId);
     final conceptName = _sharedPreferences.getString(PrefsKeys.interestConceptName);
 
@@ -40,6 +42,8 @@ class PersonalizationLocalDataSourceImpl implements PersonalizationLocalDataSour
 
       return UserPreferencesModel(
         fullName: name,
+        email: email,
+        photoUrl: photoUrl,
         interestConceptId: conceptId,
         interestConceptName: conceptName,
       );
@@ -52,6 +56,8 @@ class PersonalizationLocalDataSourceImpl implements PersonalizationLocalDataSour
   Future<void> saveUserPreferences(UserPreferencesModel preferences) async {
     try {
       await _sharedPreferences.setString(PrefsKeys.fullName, preferences.fullName);
+      await _sharedPreferences.setString(PrefsKeys.email, preferences.email);
+      await _sharedPreferences.setString(PrefsKeys.photoUrl, preferences.photoUrl);
       await _sharedPreferences.setString(PrefsKeys.interestConceptId, preferences.interestConceptId);
       await _sharedPreferences.setString(PrefsKeys.interestConceptName, preferences.interestConceptName);
     } catch (e) {
@@ -63,6 +69,8 @@ class PersonalizationLocalDataSourceImpl implements PersonalizationLocalDataSour
   Future<void> clearUserPreferences() async {
     try {
       await _sharedPreferences.remove(PrefsKeys.fullName);
+      await _sharedPreferences.remove(PrefsKeys.email);
+      await _sharedPreferences.remove(PrefsKeys.photoUrl);
       await _sharedPreferences.remove(PrefsKeys.interestConceptId);
       await _sharedPreferences.remove(PrefsKeys.interestConceptName);
       await _sharedPreferences.remove(PrefsKeys.lastSyncDate);

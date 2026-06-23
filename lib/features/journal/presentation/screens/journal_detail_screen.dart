@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../../injection_container.dart';
+import '../../../../core/firebase/firebase_analytics_service.dart';
 
 class JournalDetailScreen extends StatelessWidget {
   final String journalId;
@@ -6,6 +8,8 @@ class JournalDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    getIt<IFirebaseAnalyticsService>().logViewJournal(journalId);
+
     return Scaffold(
       appBar: AppBar(title: const Text('Journal Detail')),
       body: Center(

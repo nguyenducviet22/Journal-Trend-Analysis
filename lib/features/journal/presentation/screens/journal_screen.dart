@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../injection_container.dart';
-import '../../domain/entities/paper.dart';
 import '../blocs/publications_cubit.dart';
 
 class JournalScreen extends StatelessWidget {
@@ -24,8 +23,6 @@ class JournalScreenContent extends StatefulWidget {
   @override
   State<JournalScreenContent> createState() => _JournalScreenContentState();
 }
-
-class _HomeScreenContentState {} // Just matching name
 
 class _JournalScreenContentState extends State<JournalScreenContent> {
   final _scrollController = ScrollController();

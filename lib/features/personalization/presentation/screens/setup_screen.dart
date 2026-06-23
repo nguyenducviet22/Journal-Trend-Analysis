@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../injection_container.dart';
+import '../../../../core/firebase/firebase_auth_service.dart';
 import '../../domain/entities/user_preferences.dart';
 import '../blocs/personalization_bloc.dart';
 import '../blocs/personalization_event.dart';
@@ -228,8 +229,15 @@ class _PersonalizationSetupScreenState extends State<PersonalizationSetupScreen>
                                 return;
                               }
 
+                              final authService = getIt<IFirebaseAuthService>();
+                              final currentUser = authService.currentUser;
+                              final email = currentUser?.email ?? '';
+                              final photoUrl = currentUser?.photoURL ?? '';
+
                               final prefs = UserPreferences(
                                 fullName: name,
+                                email: email,
+                                photoUrl: photoUrl,
                                 interestConceptId: _selectedConcept!.id,
                                 interestConceptName: _selectedConcept!.name,
                               );

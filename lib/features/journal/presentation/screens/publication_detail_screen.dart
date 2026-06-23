@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../injection_container.dart';
 import '../../domain/entities/paper.dart';
 import '../../domain/usecases/get_publication_details_usecase.dart';
+import '../../../../core/firebase/firebase_analytics_service.dart';
 
 class PublicationDetailScreen extends StatefulWidget {
   final String paperId;
@@ -40,10 +41,13 @@ class _PublicationDetailScreenState extends State<PublicationDetailScreen> {
           _isLoading = false;
           _errorMessage = failure.message;
         }),
-        (paper) => setState(() {
-          _isLoading = false;
-          _paper = paper;
-        }),
+        (paper) {
+          getIt<IFirebaseAnalyticsService>().logViewPublication(paper.title, paper.publicationYear);
+          setState(() {
+            _isLoading = false;
+            _paper = paper;
+          });
+        },
       );
     }
   }

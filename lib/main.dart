@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -6,10 +7,15 @@ import 'core/navigation/app_router.dart';
 import 'core/theme/app_theme.dart';
 import 'features/profile/presentation/blocs/theme_cubit.dart';
 import 'injection_container.dart';
+import 'core/firebase/firebase_messaging_service.dart';
+import 'core/firebase/firebase_remote_config_service.dart';
 
 void main() async {
   // Ensure framework services are active
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Firebase core services
+  await Firebase.initializeApp();
 
   // Initialize easy localization
   await EasyLocalization.ensureInitialized();
@@ -21,6 +27,10 @@ void main() async {
 
   // Configure GetIt locator registrations
   await configureDependencies();
+
+  // Initialize messaging and remote config services
+  await getIt<IFirebaseMessagingService>().initialize();
+  await getIt<IFirebaseRemoteConfigService>().initialize();
 
   runApp(
     EasyLocalization(
